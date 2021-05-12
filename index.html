@@ -1,0 +1,42 @@
+<meta charset="utf-8">
+<title>jamesdelaney.ie</title>
+<body onLoad="initClock()">
+  <div id="time">
+    <h1>Alright we're gonna do this properly. Step 1. Setup a git and the ci/cd from a save locally to here.</h1>
+    <span>12/05/2021</span><br><br><br><br>
+</div>
+<div id="time">
+    <h1>Ok, ok, I'll add something other than the ability to watch the seconds of your life slowly slip away. Jeez, ye're impatient.</h1>
+    <span>05/05/2021</span><br><br><br><br>
+    <a id="h">12</a>:<a id="m">00</a>:<a id="s">00</a><br>
+    <span><small style="font-size: 12px">04/10/2020</small></span>
+</div>
+<style>
+#time {
+	font-family: monospace;
+	font-size: 34px;
+}
+</style>
+
+  <script>
+  	Number.prototype.pad = function(n) {
+  for (var r = this.toString(); r.length < n; r = 0 + r);
+  return r;
+};
+
+function updateClock() {
+  var now = new Date();
+  var sec = now.getSeconds(),
+    min = now.getMinutes(),
+    hou = now.getHours();
+  var tags = ["h", "m", "s"],
+    corr = [hou.pad(2), min.pad(2), sec.pad(2)];
+  for (var i = 0; i < tags.length; i++)
+    document.getElementById(tags[i]).firstChild.nodeValue = corr[i];
+}
+
+function initClock() {
+  updateClock();
+  window.setInterval("updateClock()", 50);
+}
+  </script>
